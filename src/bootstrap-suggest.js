@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Bootstrap Search Suggest
  * @desc    这是一个基于 bootstrap 按钮式下拉菜单组件的搜索建议插件，必须使用于按钮式下拉菜单组件上。
  * @author  renxia <lzwy0820#qq.com>
@@ -1090,11 +1090,19 @@
           $parent
             .mouseenter(function() {
               if (!$input.prop(DISABLED)) {
+                let width = 0
+                // 判断input前有多少个元素
+                let next = $input.next()
+                while(next.length && options.showBtn) {
+                  width += next.outerWidth()
+                  next = next.next()
+                }
+                // 取$input上级
                 $iClear
                   .css(
                     "right",
                     options.showBtn
-                      ? Math.max($input.next().width(), 33) + 2
+                      ? Math.max(width, 33) + 2
                       : 12
                   )
                   .show();
